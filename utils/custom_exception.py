@@ -5,7 +5,7 @@ def error_msg(error, error_detail:sys):
     filename = exc_tb.tb_frame.f_code.co_filename
     return f"Error occured in {filename} in the line {exc_tb.tb_lineno} and the error is {str(error)}"
 
-class CustomException:
+class CustomException(Exception):
     def __init__(self, error, error_detail:sys):
         super().__init__(error)
         self.error_message = error_msg(error, error_detail)

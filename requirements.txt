@@ -3,3 +3,4 @@ pandas
 kagglehub
 torch
 opencv-python-headless
+torchvision

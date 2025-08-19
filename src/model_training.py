@@ -7,6 +7,8 @@ import sys
 from torch import optim
 from src.model_architecture import FasterRCNNModel
 from src.data_processing import GunData
+from torch.utils.tensorboard import SummaryWriter
+import time
 
 model_save_path = "artifacts/model"
 os.makedirs(model_save_path, exist_ok=True)
@@ -19,6 +21,12 @@ class ModelTraining:
         self.dataset = dataset
         self.learning_rate = learning_rate
         self.device = device
+
+        timestamp = time.strftime('%d_%m_%y_%H_%M_%S')
+        self.logdir = f"tb_logs/{timestamp}"
+        os.makedirs(self.logdir , exist_ok=True)
+        self.writer = SummaryWriter(log_dir = self.logdir)
+
 
         try:
             self.model = self.model_class(self.num_classes, self.device).model
@@ -70,8 +78,12 @@ class ModelTraining:
                         if total_loss==0:
                             logging.info("Error in loss calcultaion in model_training.py")
                             raise ValueError("Error in capturing loss in model_training.py")
+                        
+                        self.writer.add_scalar("Loss/Train", total_loss.item(), epoch*(len(train_loader))+i )
+
                     else:
                         total_loss = losses[0]
+                        self.writer.add_scalar("Loss/Train", total_loss.item(), epoch*(len(train_loader))+i )
 
                     total_loss.backward()
                     self.optimizer.step()
@@ -81,6 +93,12 @@ class ModelTraining:
                     for img, tgt in val_loader:
                         val_losses = self.model(img, tgt)
                         logging.info(f"Val loss: {val_losses}")
+                    # avg_score = val_losses[0]['scores'].mean().item()
+                    # self.writer.add_scalar("Loss/Val_loss", avg_score,  epoch*(len(train_loader))+i)
+
+                self.writer.flush
+                    
+
                 
                 model_path = os.path.join(self.dataset, "F_RCNN.pth")
                 torch.save(self.model.state_dict(), model_path)

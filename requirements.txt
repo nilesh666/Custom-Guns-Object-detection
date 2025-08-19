@@ -4,3 +4,4 @@ kagglehub
 torch
 opencv-python-headless
 torchvision
+tensorboard

@@ -1,3 +1,5 @@
 numpy 
 pandas
 kagglehub
+torch
+opencv-python-headless

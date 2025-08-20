@@ -208,4 +208,6 @@ __marimo__/
 
 /artifacts/raw
 /artifacts/model
+!artifacts/model/F_RCNN.pth.dvc
+!artifacts/raw.dvc
 /tb_logs

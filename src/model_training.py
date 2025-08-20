@@ -99,8 +99,9 @@ class ModelTraining:
                 self.writer.flush
                     
 
-                
-                model_path = os.path.join(self.dataset, "F_RCNN.pth")
+                model_dir = os.path.join("artifacts" , "model")
+                os.makedirs(model_dir, exist_ok=True)
+                model_path = os.path.join(model_dir, "F_RCNN.pth")
                 torch.save(self.model.state_dict(), model_path)
                 logging.info("Model saved successfully")
 

@@ -206,8 +206,7 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-/artifacts/raw
-/artifacts/model
-!artifacts/model/F_RCNN.pth.dvc
-!artifacts/raw.dvc
+artifacts/raw
+artifacts/model/F_RCNN.pth
+artifacts/F_RCNN.pth
 /tb_logs

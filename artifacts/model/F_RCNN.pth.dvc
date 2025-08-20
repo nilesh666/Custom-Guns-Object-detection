@@ -1,0 +1,5 @@
+outs:
+- md5: c00b23a1a98ab1a250070f78b4997195
+  size: 165716868
+  hash: md5
+  path: F_RCNN.pth

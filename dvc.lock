@@ -8,25 +8,8 @@ stages:
       md5: 7b811646989a2f07acae573e604a89b4
       size: 2523
     outs:
-    - path: artifacts/raw
+    - path: artifacts/raw/
       hash: md5
-      md5: adfb9f01a07ced01f71d76b2cc3d7908.dir
-      size: 2442191
-      nfiles: 666
-  model_training:
-    cmd: python src/model_training.py
-    deps:
-    - path: artifacts/raw
-      hash: md5
-      md5: adfb9f01a07ced01f71d76b2cc3d7908.dir
-      size: 2442191
-      nfiles: 666
-    - path: src/model_training.py
-      hash: md5
-      md5: 530fe750cb63216d33514204eb77231f
-      size: 4902
-    outs:
-    - path: artifacts/model/F_RCNN.pth
-      hash: md5
-      md5: ff479928dd1b27b90845b2d555b25d7d
-      size: 165716868
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0

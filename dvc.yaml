@@ -4,12 +4,12 @@ stages:
     deps:
       - src/data_ingestion.py
     outs:
-      - artifacts/raw
+      - artifacts/raw/
+
   model_training:
     cmd: python src/model_training.py
     deps:
       - src/model_training.py
-      - artifacts/raw
+      - artifacts/raw/
     outs:
-      - artifacts/model/F_RCNN.pth
-    
+      - artifacts\model\F_RCNN.pth
